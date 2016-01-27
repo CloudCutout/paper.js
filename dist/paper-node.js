@@ -10830,7 +10830,7 @@ var Style = Base.extend(new function() {
 });
 
 var jsdom = require('jsdom'),
-	domToHtml = require('jsdom/lib/jsdom/browser/domtohtml').domToHtml,
+	//domToHtml = require('jsdom/lib/jsdom/browser/domtohtml').domToHtml,
 	Canvas = require('canvas'),
 	document = jsdom.jsdom('<html><body></body></html>'),
 	window = document.defaultView,
@@ -10842,7 +10842,8 @@ function XMLSerializer() {
 }
 
 XMLSerializer.prototype.serializeToString = function(node) {
-	var text = domToHtml(node);
+	//var text = domToHtml(node);
+        var text = jsdom.serializeDocument(node);	
 	var tagNames = ['linearGradient', 'radialGradient', 'clipPath'];
 	for (var i = 0, l = tagNames.length; i < l; i++) {
 		var tagName = tagNames[i];
